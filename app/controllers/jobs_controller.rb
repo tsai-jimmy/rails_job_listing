@@ -13,7 +13,8 @@ class JobsController < ApplicationController
   	@job.save
   	redirect_to jobs_path
   end
-  def edite
+  def edit
+  	@job.find(params[:id])
   end
 
   private
