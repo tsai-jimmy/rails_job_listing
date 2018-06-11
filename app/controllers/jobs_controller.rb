@@ -21,6 +21,12 @@ class JobsController < ApplicationController
   	@job.update(job_params)
   	redirect_to jobs_path, notice: "Update Success"
   end
+  def destroy
+	@job = Job.find(params[:id])
+	@job.destroy
+	flash[:alert] = "Group deleted"
+	redirect_to jobs_path
+  end
   private
   def job_params
   	params.require(:job).permit(:tite, :description)
