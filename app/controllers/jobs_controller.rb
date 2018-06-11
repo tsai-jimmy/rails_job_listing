@@ -14,9 +14,13 @@ class JobsController < ApplicationController
   	redirect_to jobs_path
   end
   def edit
-  	@job.find(params[:id])
+  	@job = Job.find(params[:id])
   end
-
+  def update
+  	@job = Job.find(params[:id])
+  	@job.update(job_params)
+  	redirect_to jobs_path, notice: "Update Success"
+  end
   private
   def job_params
   	params.require(:job).permit(:tite, :description)
