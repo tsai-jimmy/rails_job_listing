@@ -49,8 +49,10 @@ class JobsController < ApplicationController
 
   def find_job_and_check_permission
     @job = Job.find(params[:id])
+    return if current_user.admin?
+
     if current_user != @job.user
-      redirect_to root_path, alert: "You have no permission."
+        redirect_to root_path, alert: "You have no permission."
     end
   end
 

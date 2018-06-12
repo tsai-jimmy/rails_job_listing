@@ -13,7 +13,9 @@
     <%= f.input :wage_lower_bound, :label => "薪资下限" %>
 	<%= f.input :wage_upper_bound, :label => "薪资上限" %>
 	<%= f.input :contact_email %>
-	<%= f.input :is_hidden %>
+	<% if user_signed_in? && current_user.admin? %>
+		<%= f.input :is_hidden %>
+	<% end %>
 </div>
 
 <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
