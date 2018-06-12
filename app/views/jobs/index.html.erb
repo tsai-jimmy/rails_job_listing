@@ -21,7 +21,7 @@
           <td>
               <% if current_user && current_user == job.user %>
                 <%= link_to("Edit", edit_job_path(job), class: "btn btn-sm btn-default")%>
-                <%= link_to("Delete", job_path(job),    class: "btn btn-sm btn-default",
+                <%= link_to("Delete", job_path(job),    class: "btn btn-sm btn-danger",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
               <%end%>
           </td>
