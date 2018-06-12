@@ -5,21 +5,37 @@
 <br><br>
 
 <table class="table table-bordered">
-  <% @jobs.each do |job| %>
-  <tr>
-    <td>
-      <%= link_to(job.title, admin_job_path(job)) %>
-    </td>
-    <td>
-      <%= link_to("Edit", edit_admin_job_path(job),class: "btn btn-sm btn-default") %> 
-      <%= link_to("Destroy", admin_job_path(job),class: "btn btn-sm btn-danger", :method => :delete, :data => { :confirm => "Are you sure?" }) %>
-    </td>
-    <td>
-      <%= job.user.email %>
-    </td>
-    <td>
-      <%= job.created_at %>
-    </td>
-  </tr>
-  <% end %>
+  <thead>
+    <tr>
+      <td>status</td>
+      <td>职缺</td>
+      <td></td>
+      <td>开缺人</td>
+      <td>开缺时间</td>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @jobs.each do |job| %>
+	    <tr>
+	      <% if job.is_hidden %>
+	          <td>(Hidden)</td>
+	        <% else %>
+	          <td>(Public)</td>
+	      <% end %>
+	      <td>
+	        <%= link_to(job.title, admin_job_path(job)) %>
+	      </td>
+	      <td>
+	        <%= link_to("Edit", edit_admin_job_path(job),class: "btn btn-sm btn-default") %> 
+	        <%= link_to("Destroy", admin_job_path(job),class: "btn btn-sm btn-danger", :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+	      </td>
+	      <td>
+	        <%= job.user.email %>
+	      </td>
+	      <td>
+	        <%= job.created_at %>
+	      </td>
+	    </tr>
+  	<% end %>
+  </tbody>
 </table>

@@ -6,18 +6,22 @@
     <thead>
       <tr>
         <td>#</td>
-        <td>工作</td>
-        <td>描述</td>
-        <td>Creator</td>
+        <td>职缺</td>
+        <td>开缺人</td>
+        <td>开缺时间</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
           <td>#</td>
+          
           <td><%= link_to(job.title, job_path(job)) %></td>
-          <td><%= job.description %></td>
           <td><%= job.user.email %></td>
+          <td>
+            <%= job.created_at %>
+          </td>
           <td>
               <% if user_signed_in? && (current_user == job.user || current_user.admin?)%>
                 <%= link_to("Edit", edit_job_path(job), class: "btn btn-sm btn-default")%>
