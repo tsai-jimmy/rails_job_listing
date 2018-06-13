@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         patch :publish
         patch :hide
       end
+      resources :resumes
     end
   end
 
