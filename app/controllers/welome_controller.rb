@@ -1,3 +1,0 @@
-class WelomeController < ApplicationController
-
-end
