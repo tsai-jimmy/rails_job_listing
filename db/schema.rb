@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20180613035400) do
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "user_id"
     t.integer  "wage_upper_bound"
     t.integer  "wage_lower_bound"
     t.string   "contact_email"
-    t.boolean  "is_hidden",        default: true
+    t.boolean  "is_hidden",        default: false
   end
 
   create_table "resumes", force: :cascade do |t|
