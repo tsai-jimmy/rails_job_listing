@@ -1,13 +1,13 @@
-<div class="col-md-12">
+<div class="container text-center">
+  <h2><%= @job.title %></h2>
+  <p><%= @job.description %></p>
   <div class="group">
   	<% if current_user && current_user == @job.user %>
 		<%= link_to("Edit", edit_job_path(@job), class: "btn btn-primary pull-right")%>
   	<% end %>
     
   </div>
-  <h2><%= @job.title %></h2>
-  <p><%= @job.description %></p>
-  	<div class="text-center">
+  <div class="text-center">
 	  <%= link_to("投交履历", new_job_resume_path(@job), :style => "font-size: 30px; text-decoration: underline;") %>
 	</div>
 
