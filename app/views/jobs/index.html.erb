@@ -1,27 +1,24 @@
 <h1 class="text-center">立马应征</h1>
-
 <div class="col-md-12">
-<%= render "common/flashes" %>
+  <%= render "common/flashes" %>
   <div class="group">
     <%= link_to("新增工作", new_job_path, class: "btn btn-primary pull-right") %>
   </div>
   <div class="dropdown clearfix pull-right">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       排序
-        <span class="caret"></span>
+      <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-        <li>
-          <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
-        </li>
-        <li>
-            <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
-
-        </li>
-        <li>
-          <%= link_to("按照发表时间排序", jobs_path ) %>
-
-        </li>
+      <li>
+        <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
+      </li>
+      <li>
+        <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
+      </li>
+      <li>
+        <%= link_to("按照发表时间排序", jobs_path ) %>
+      </li>
     </ul>
   </div>
   <table class="table table-hover">
@@ -40,7 +37,6 @@
       <% @jobs.each do |job| %>
         <tr>
           <td>#</td>
-          
           <td><%= link_to(job.title, job_path(job)) %></td>
           <td><%= job.wage_lower_bound %></td>
           <td><%= job.wage_upper_bound %></td>
@@ -49,16 +45,14 @@
             <%= job.created_at %>
           </td>
           <td>
-              <% if user_signed_in? && (current_user == job.user || current_user.admin?)%>
-                <%= link_to("Edit", edit_job_path(job), class: "btn btn-sm btn-default")%>
-                <%= link_to("Delete", job_path(job),    class: "btn btn-sm btn-danger",
+            <% if user_signed_in? && (job.owner?(current_user) || current_user.admin?) %>
+              <%= link_to("Edit", edit_job_path(job), class: "btn btn-sm btn-default")%>
+              <%= link_to("Delete", job_path(job),    class: "btn btn-sm btn-danger",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
-              <%end%>
+            <%end%>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-

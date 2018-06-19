@@ -16,6 +16,10 @@
 
 class Job < ApplicationRecord
   belongs_to :user
+  has_many :resumes
+  scope :published, -> { where(is_hidden: false) }
+  scope :recent,-> {order('created_at DESC')}
+
   validates :title, presence: true
   validates :description, presence: true
   validates :wage_upper_bound, presence: true
@@ -31,7 +35,8 @@ class Job < ApplicationRecord
     self.is_hidden = true
     self.save
   end
-  scope :published, -> { where(is_hidden: false) }
-  scope :recent,-> {order('created_at DESC')}
-  has_many :resumes
+
+  def owner?(user)
+    self.user == user
+  end
 end
