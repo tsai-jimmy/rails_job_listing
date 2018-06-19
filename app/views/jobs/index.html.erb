@@ -45,7 +45,7 @@
             <%= job.created_at %>
           </td>
           <td>
-            <% if user_signed_in? && (job.owner?(current_user) || current_user.admin?) %>
+            <% if user_signed_in? && can_operator?( job,current_user) %>
               <%= link_to("Edit", edit_job_path(job), class: "btn btn-sm btn-default")%>
               <%= link_to("Delete", job_path(job),    class: "btn btn-sm btn-danger",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
